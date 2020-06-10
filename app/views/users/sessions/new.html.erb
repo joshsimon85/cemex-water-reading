@@ -1,0 +1,30 @@
+<main>
+  <%= link_to root_path, class: "d-inline-block", id: 'logo' do %>
+    <h1>
+      <%= image_tag 'cemex-logo.png' %>
+    </h1>
+  <% end %>
+  <section class="mt-5 border rounded shadow mx-auto w-25 p-2">
+    <h2 class="text-center">Sign In</h2>
+
+    <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+      <dl>
+        <dt><%= f.label :email %></dt>
+        <dd class="mb-2"><%= f.email_field :email, autofocus: true, autocomplete: "email", class: "d-inline-block w-100" %></dd>
+        <dt><%= f.label :password %></dt>
+        <dd class="mb-2"><%= f.password_field :password, autocomplete: "current-password", class: "d-inline-block w-100" %></dd>
+
+        <% if devise_mapping.rememberable? %>
+          <dt class="d-inline-block mb-2"><%= f.check_box :remember_me %></dt>
+          <dd class="d-inline-block mb-2"><%= f.label :remember_me %></dd>
+        <% end %>
+
+        <div class="actions">
+          <%= f.submit "Sign in", class: 'btn-outline-primary w-100 mb-2 rounded' %>
+        </div>
+      </dl>
+    <% end %>
+
+    <%= render "users/shared/links" %>
+  </section>
+</main>
