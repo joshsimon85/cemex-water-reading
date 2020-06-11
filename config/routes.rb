@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  devise_for :users, controllers: {
+  devise_for :users, path: '', controllers: {
     confirmations: 'users/confirmations',
     passwords: 'users/passwords',
     registrations: 'users/registrations',
@@ -9,5 +9,11 @@ Rails.application.routes.draw do
 
   devise_scope :user do
     root to: 'users/sessions#new'
-  end 
+  end
+
+  authenticated do
+    scope '/admin' do
+      get 'meter_readings', to: 'water_meter_readings#index'
+    end
+  end
 end

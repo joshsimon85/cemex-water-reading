@@ -1,0 +1,34 @@
+<main>
+  <h2 class="text-center my-5">Water Meter Readings</h2>
+  <% if @readings.count > 0 %>
+    <table class="container">
+      <thead class="text-center">
+        <tr>
+          <th>Date</th>
+          <th>Time</th>
+          <th>Employee</th>
+          <th>Reading</th>
+          <th>Image</th>
+        </tr>
+      </thead>
+      <tbody class="text-center">
+        <% @readings.each do |reading| %>
+          <tr>
+            <td><%= reading.created_at.strftime('%A, %B %d, %Y') %></td>
+            <td><%= reading.created_at.strftime('%H:%M %p') %></td>
+            <td><%= reading.user.full_name %></td>
+            <td><%= reading.reading %></td>
+            <td>
+              <%= link_to nil do %>
+                <%= image_tag reading.image.variant(resize_to_limit: [nil, 90]) %>
+              <% end %>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  <% else %>
+    <h3 class="text-center">Sorry, there are no readings to show!</h3>
+  <% end %>
+  <%= paginate @readings, left: 3, right: 3 %>
+</main>
