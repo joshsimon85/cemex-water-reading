@@ -12,7 +12,7 @@ end
 shared_examples 'requires sign in' do
   it 'redirects to the sign in page' do
     action
-    expect(response).to redirect_to sign_in_path
+    expect(response).to redirect_to new_user_session_path
     expect(flash[:alert]).to be_present
   end
 end

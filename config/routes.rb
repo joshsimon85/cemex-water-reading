@@ -13,7 +13,7 @@ Rails.application.routes.draw do
 
   authenticated do
     scope '/admin' do
-      get 'meter_readings', to: 'water_meter_readings#index'
+      resources :water_meter_readings, param: :slug, only: [:index, :show]
     end
   end
 end

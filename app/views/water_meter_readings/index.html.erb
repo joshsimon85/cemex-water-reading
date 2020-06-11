@@ -15,11 +15,11 @@
         <% @readings.each do |reading| %>
           <tr>
             <td><%= reading.created_at.strftime('%A, %B %d, %Y') %></td>
-            <td><%= reading.created_at.strftime('%H:%M %p') %></td>
+            <td><%= reading.created_at.strftime('%I:%M %p') %></td>
             <td><%= reading.user.full_name %></td>
             <td><%= reading.reading %></td>
             <td>
-              <%= link_to nil do %>
+              <%= link_to water_meter_reading_path(reading) do %>
                 <%= image_tag reading.image.variant(resize_to_limit: [nil, 90]) %>
               <% end %>
             </td>

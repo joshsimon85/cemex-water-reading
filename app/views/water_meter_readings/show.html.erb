@@ -1,0 +1,17 @@
+<main class="container">
+  <h2 class="mt-5 mb-1 text-center">
+    Water Meter Reading <%= @reading.created_at.strftime('%A, %B %d, %Y') %>
+  </h2>
+  <p class="mb-5 text-center">
+    Taken By <strong><%= @reading.user.full_name %></strong> at
+    <%= @reading.created_at.strftime('%I:%M %p') %>
+  </p>
+  <aside class="text-center">
+    <%= image_tag @reading.image.variant(resize_to_limit: [300, nil]), class: 'full-size-image' %>
+  </aside>
+  <p class="text-center mt-1">Manual Reading: <%= @reading.reading %></p>
+  <div class="actions mt-3">
+    <%= link_to 'Update', nil, class: 'd-block mx-auto mb-2 btn btn-outline-primary' %>
+    <%= link_to 'Delete', nil, class: 'd-block mx-auto mb-5 btn btn-outline-danger' %>
+  </div>
+</main>
