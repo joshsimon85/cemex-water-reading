@@ -4,9 +4,10 @@
     <table class="container">
       <thead class="text-center">
         <tr>
+          <th>Quick View</th>
           <th>Date</th>
           <th>Time</th>
-          <th>Employee</th>
+          <th>Created By</th>
           <th>Reading</th>
           <th>Image</th>
         </tr>
@@ -14,6 +15,11 @@
       <tbody class="text-center">
         <% @readings.each do |reading| %>
           <tr>
+            <td>
+              <%= link_to water_meter_reading_path(reading) do %>
+                <i class="fa fa-search" aria-hidden="true"></i>
+              <% end %>
+            </td>
             <td><%= reading.created_at.strftime('%A, %B %d, %Y') %></td>
             <td><%= reading.created_at.strftime('%I:%M %p') %></td>
             <td><%= reading.user.full_name %></td>

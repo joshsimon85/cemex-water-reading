@@ -13,7 +13,12 @@ Rails.application.routes.draw do
 
   authenticated do
     scope '/admin' do
-      resources :water_meter_readings, param: :slug
+      resources :water_meter_readings, param: :slug, except: [:new, :create]
+
+      get '/accounts', to: 'deactivations#index'
     end
+
+    #get '/water_meter_reading/new', to: 'water_meter_readings#new'
+    resources :water_meter_readings, param: :slug, only: [:new, :create]
   end
 end

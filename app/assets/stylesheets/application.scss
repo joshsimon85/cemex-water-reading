@@ -14,7 +14,13 @@
   *= require_tree .
   *= require_self
 */
-//@import "~bootstrap/scss/bootstrap";
+@import "bootstrap/scss/bootstrap";
+$fa-font-path: '@fortawesome/fontawesome-free/webfonts';
+@import '@fortawesome/fontawesome-free/scss/fontawesome';
+@import '@fortawesome/fontawesome-free/scss/solid';
+@import '@fortawesome/fontawesome-free/scss/regular';
+@import '@fortawesome/fontawesome-free/scss/brands';
+@import '@fortawesome/fontawesome-free/scss/v4-shims';
 
 h1 {
   font-size: 3.5rem;
@@ -97,7 +103,7 @@ tr:last-of-type {
   width: 300px;
 }
 
-.actions a, .actions input {
+.actions a, .actions input, .actions button {
   width: 300px;
 }
 

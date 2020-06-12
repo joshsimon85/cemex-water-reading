@@ -1,11 +1,11 @@
 shared_examples 'requires signed in admin' do
-  it 'redirects to the root path' do
-    admin = create(:user, admin: true)
+  it 'redirects new water meter reading path' do
+    user = create(:user, admin: false)
 
-    sign_in(admin)
+    sign_in(user)
     action
-    expect(response).to redirect_to root_path
-    expect(flash[:alert]).to be_present
+    expect(response).to redirect_to(new_water_meter_reading_path)
+    expect(flash[:error]).to be_present
   end
 end
 

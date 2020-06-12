@@ -1,5 +1,6 @@
 class WaterMeterReadingsController < ApplicationController
   before_action :authenticate_user!
+  before_action :require_admin!, except: [:new, :create]
 
   def index
     if params[:page]
@@ -7,6 +8,10 @@ class WaterMeterReadingsController < ApplicationController
     else
       @readings = WaterMeterReading.page(1)
     end
+  end
+
+  def new
+
   end
 
   def show

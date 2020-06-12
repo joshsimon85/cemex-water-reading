@@ -11,8 +11,8 @@ RSpec.describe WaterMeterReadingsController do
       let(:action) { get :index }
     end
 
-    context 'with logged in user' do
-
+    it_behaves_like 'requires signed in admin' do
+      let(:action) { get :index }
     end
 
     context 'with logged in admin' do
@@ -30,6 +30,10 @@ RSpec.describe WaterMeterReadingsController do
       let(:action) { get :show, params: { slug: reading.slug } }
     end
 
+    it_behaves_like 'requires signed in admin' do
+      let(:action) { get :show, params: { slug: reading.slug } }
+    end
+
     it 'renders the show template' do
       sign_in(admin)
 
@@ -40,6 +44,10 @@ RSpec.describe WaterMeterReadingsController do
 
   describe 'GET edit' do
     it_behaves_like 'requires sign in' do
+      let(:action) { get :edit, params: { slug: reading.slug } }
+    end
+
+    it_behaves_like 'requires signed in admin' do
       let(:action) { get :edit, params: { slug: reading.slug } }
     end
 
@@ -55,6 +63,17 @@ RSpec.describe WaterMeterReadingsController do
 
   describe 'PATCH update' do
     it_behaves_like 'requires sign in' do
+      let(:action) { patch :update,
+        params: {
+          slug: reading.slug,
+          water_meter_reading: {
+            reading: 100
+          }
+        }
+      }
+    end
+
+    it_behaves_like 'requires signed in admin' do
       let(:action) { patch :update,
         params: {
           slug: reading.slug,
@@ -125,6 +144,12 @@ RSpec.describe WaterMeterReadingsController do
       }
     end
 
+    it_behaves_like 'requires signed in admin' do
+      let(:action) {
+        delete :destroy, params: { slug: reading.slug }
+      }
+    end
+
     context 'with signed in admin and an existing record' do
       before do
         sign_in(admin)
@@ -148,7 +173,6 @@ RSpec.describe WaterMeterReadingsController do
     context 'with signed in admin and a non existing record' do
       before do
         sign_in(admin)
-
         delete :destroy, params: { slug: 30 }
       end
 

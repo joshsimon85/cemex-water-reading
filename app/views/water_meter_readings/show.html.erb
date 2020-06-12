@@ -9,13 +9,18 @@
   <%= image_tag @reading.image.variant(resize_to_limit: [300, nil]), class: 'full-size-image' %>
   <p class="text-center mt-1">Manual Reading: <%= @reading.reading %></p>
   <div class="actions mt-3">
-    <%= link_to 'Edit', edit_water_meter_reading_path(@reading), class: 'd-block mx-auto mb-2 btn btn-outline-primary' %>
-    <%= button_to 'Delete', water_meter_reading_path(@reading),
+    <%= link_to edit_water_meter_reading_path(@reading), class: 'd-block mx-auto mb-2 btn btn-outline-primary'  do %>
+      <i class="far fa-edit"></i>
+      Edit
+    <% end %>
+    <%= button_to water_meter_reading_path(@reading),
       method: :delete,
       data: {
         :confirm => 'Are you sure you want to delete this record? This action can\'t be undone.',
         :remote => false
       },
-      :class => "d-block mx-auto mb-5 btn btn-outline-danger" %>
+      :class => "d-block mx-auto mb-5 btn btn-outline-danger" do %>
+      <i class="far fa-trash-alt"></i> Delete
+    <% end %>
   </div>
 </main>
