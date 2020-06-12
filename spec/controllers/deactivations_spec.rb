@@ -6,11 +6,11 @@ RSpec.describe DeactivationsController do
 
   describe 'POST create' do
     it_behaves_like 'requires sign in' do
-      let(:action) { post :create, slug: active_user.slug  }
+      let(:action) { post :create  }
     end
 
     it_behaves_like 'requires signed in admin' do
-      let(:action) { post :create, slug: active_user.slug }
+      let(:action) { post :create }
     end
   end
 end
