@@ -124,5 +124,41 @@ RSpec.describe WaterMeterReadingsController do
         delete :destroy, params: { slug: reading.slug }
       }
     end
+
+    context 'with signed in admin and an existing record' do
+      before do
+        sign_in(admin)
+
+        delete :destroy, params: { slug: reading.slug }
+      end
+
+      it 'sets the flash success message' do
+        expect(flash[:success]).to be_present
+      end
+
+      it 'deletes the water meter reading' do
+        expect(WaterMeterReading.find_by(slug: reading.slug)).to eq(nil)
+      end
+
+      it 'redirects to the water meter index path' do
+        expect(response).to redirect_to(water_meter_readings_path)
+      end
+    end
+
+    context 'with signed in admin and a non existing record' do
+      before do
+        sign_in(admin)
+
+        delete :destroy, params: { slug: 30 }
+      end
+
+      it 'sets the flash error message' do
+        expect(flash[:error]).to be_present
+      end
+
+      it 'redirects to the water meter reading index page' do
+        expect(response).to redirect_to(water_meter_readings_path)
+      end
+    end
   end
 end

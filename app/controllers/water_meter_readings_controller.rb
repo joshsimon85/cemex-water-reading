@@ -2,14 +2,10 @@ class WaterMeterReadingsController < ApplicationController
   before_action :authenticate_user!
 
   def index
-    if current_user.admin?
-      if params[:page]
-        @readings = WaterMeterReading.page(params[:page])
-      else
-        @readings = WaterMeterReading.page(1)
-      end
+    if params[:page]
+      @readings = WaterMeterReading.page(params[:page])
     else
-      #@readings = WaterMeterReading.where(name is me)
+      @readings = WaterMeterReading.page(1)
     end
   end
 
@@ -30,6 +26,18 @@ class WaterMeterReadingsController < ApplicationController
     else
       flash.now[:error] = 'There was a problem updating the reading.'
       render :edit
+    end
+  end
+
+  def destroy
+    @reading = WaterMeterReading.find_by(slug: params[:slug])
+    if @reading
+      @reading.destroy
+      flash[:success] = 'The reading has been successfully deleted.'
+      redirect_to water_meter_readings_path
+    else
+      flash[:error] = 'There was a problem deleting that reading.'
+      redirect_to water_meter_readings_path
     end
   end
 end
