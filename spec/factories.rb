@@ -5,6 +5,7 @@ FactoryBot.define do
     password     { Faker::Internet.password(min_length: 6) }
     admin        { false }
     confirmed_at { Time.now }
+    suspended    { false }
   end
 
   factory :water_meter_reading do

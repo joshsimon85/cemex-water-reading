@@ -9,12 +9,14 @@ class User < ApplicationRecord
 
   validates :full_name, presence: true
 
+  paginates_per 20
+
   def admin?
     admin
   end
 
   def to_param
-    slug 
+    slug
   end
 
   private

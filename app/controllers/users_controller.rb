@@ -1,8 +1,8 @@
 class UsersController < ApplicationController
-  before_action authenticate_user!
-  before_action require_admin!
+  before_action :authenticate_user!
+  before_action :require_admin!
 
   def index
-
-  end 
+    @users = User.page(1)
+  end
 end

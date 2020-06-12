@@ -1,0 +1,56 @@
+<main>
+  <h2 class="text-center my-5">Accounts</h2>
+  <% if @users.count > 0 %>
+    <table class="container">
+      <thead class="text-center">
+        <tr>
+          <th>Employee</th>
+          <th>Account Type</th>
+          <th>Account Status</th>
+          <th>Account Actions</th>
+        </tr>
+      </thead>
+      <tbody class="text-center">
+        <% @users.each do |user| %>
+          <tr>
+            <td><%= user.full_name %></td>
+            <% if user.admin? %>
+              <td>Admin</td>
+            <% else %>
+              <td>Employee</td>
+            <% end %>
+            <% if user.suspended == true %>
+              <td>Suspended</td>
+            <% else %>
+              <td>Active</td>
+            <% end %>
+            <% if user.suspended == false %>
+              <td>
+                <%= button_to 'Deactivate Account', deactivation_path(user),
+                    method: :post,
+                    data: {
+                      :confirm => 'Are you sure you want to deactivate this account?',
+                      :remote => false
+                    },
+                    :class => "btn btn-outline-danger" %>
+              </td>
+            <% else %>
+              <td>
+                <%= button_to 'Activate Account', activation_path(user),
+                  method: :delete,
+                  data: {
+                    :confirm => 'Are you sure you want to activate this account?',
+                    :remote => false
+                  },
+                  :class => "btn btn-outline-success" %>
+              </td>
+            <% end %>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  <% else %>
+    <h3 class="text-center">Sorry, there are no readings to show!</h3>
+  <% end %>
+  <%= paginate @users, left: 3, right: 3 %>
+</main>

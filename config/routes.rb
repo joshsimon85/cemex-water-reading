@@ -15,10 +15,11 @@ Rails.application.routes.draw do
     scope '/admin' do
       resources :water_meter_readings, param: :slug, except: [:new, :create]
 
-      get '/accounts', to: 'deactivations#index'
+      get '/accounts', to: 'users#index'
+      post '/account/:slug/deactivate', to: 'deactivations#create', as: :deactivation
+      delete '/account/:slug/activate', to: 'deactivations#destroy', as: :activation
     end
 
-    #get '/water_meter_reading/new', to: 'water_meter_readings#new'
     resources :water_meter_readings, param: :slug, only: [:new, :create]
   end
 end

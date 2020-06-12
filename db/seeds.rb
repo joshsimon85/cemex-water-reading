@@ -3,7 +3,8 @@ admin = User.create({
   :email => 'jon@doe.com',
   :password => 'password',
   :confirmed_at => Time.now,
-  :admin => true
+  :admin => true,
+  :suspended => false
 })
 
 user = User.create({
@@ -11,7 +12,17 @@ user = User.create({
   :email => 'jane@doe.com',
   :password => 'password',
   :confirmed_at => Time.now,
-  :admin => false
+  :admin => false,
+  :suspended => false
+})
+
+suspended_user = User.create({
+  :full_name => 'Suspended User',
+  :email => 'suspended@user.com',
+  :password => 'password',
+  :confirmed_at => Time.now,
+  :admin => false,
+  :suspended => true
 })
 
 reading_1 = WaterMeterReading.new({
