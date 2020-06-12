@@ -1,0 +1,25 @@
+<main class="container">
+  <%= form_for @reading, remote: false do |f| %>
+    <% if @reading.errors.any? %>
+      <%= render partial: 'shared/errors',
+            :locals => { :obj => @reading, :action => 'updated' } %>
+    <% end %>
+    <h2 class="mt-5 mb-1 text-center">
+      Edit Water Meter Reading From <%= @reading.created_at.strftime('%A, %B %d, %Y') %>
+    </h2>
+    <p class="mb-5 text-center">
+      Taken By <strong><%= @reading.user.full_name %></strong> at
+      <%= @reading.created_at.strftime('%I:%M %p') %>
+    </p>
+    <%= image_tag @reading.image.variant(resize_to_limit: [300, nil]), class: 'full-size-image' %>
+    <div class="text-center mt-2">
+      <dt class="d-inline-block"><%= f.label :reading, "Manual Reading: " %></dt>
+      <dd class="d-inline-block"><%=f.text_field :reading, value: @reading.reading %>
+    </div>
+    <div class="actions mt-3">
+      <%= f.submit 'Update', class: 'd-block mx-auto mb-2 btn btn-outline-primary' %>
+      <%= link_to 'Cancel', water_meter_readings_path, class: 'd-block mx-auto mb-2 btn btn-outline-secondary' %>
+      <%= link_to 'Delete', nil, class: 'd-block mx-auto mb-5 btn btn-outline-danger' %>
+    </div>
+  <% end %>
+</main>

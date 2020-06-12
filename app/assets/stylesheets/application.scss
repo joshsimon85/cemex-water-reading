@@ -10,10 +10,11 @@
  * files in this directory. Styles in this file should be added after the last require_* statement.
  * It is generally better to create a new file per style scope.
  *
- *= require bootstrap
- *= require_tree .
- *= require_self
+  *= require bootstrap
+  *= require_tree .
+  *= require_self
 */
+//@import "~bootstrap/scss/bootstrap";
 
 h1 {
   font-size: 3.5rem;
@@ -90,14 +91,20 @@ tr:last-of-type {
 .full-size-image {
   border: 1px solid black;
   box-sizing: border-box;
-  display: inline-block;
+  display: block;
   height: auto;
+  margin: 0 auto;
   width: 300px;
 }
 
-.actions a {
+.actions a, .actions input {
   width: 300px;
 }
+
+.error-messages {
+  margin-left: 1rem;
+}
+
 @media (min-width: 0px) {
 
 }

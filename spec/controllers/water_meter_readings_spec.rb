@@ -2,8 +2,10 @@ require 'rails_helper'
 
 RSpec.describe WaterMeterReadingsController do
   let(:admin) { create(:user, admin: true) }
-  let(:reading) { create(:water_meter_reading, :with_image, user: admin) }
-  
+  let(:reading) {
+    create(:water_meter_reading, :with_image, user: admin, reading: 1)
+  }
+
   describe 'GET index' do
     it_behaves_like 'requires sign in' do
       let(:action) { get :index }
@@ -36,9 +38,91 @@ RSpec.describe WaterMeterReadingsController do
     end
   end
 
-  describe 'GET update' do
+  describe 'GET edit' do
     it_behaves_like 'requires sign in' do
-      let(:action) { get :update, params: { slug: reading.slug } }
+      let(:action) { get :edit, params: { slug: reading.slug } }
+    end
+
+    context 'with signed in admin' do
+      it 'renders the edit template' do
+        sign_in(admin)
+
+        get :edit, params: { slug: reading.slug }
+        expect(response).to render_template(:edit)
+      end
+    end
+  end
+
+  describe 'PATCH update' do
+    it_behaves_like 'requires sign in' do
+      let(:action) { patch :update,
+        params: {
+          slug: reading.slug,
+          water_meter_reading: {
+            reading: 100
+          }
+        }
+      }
+    end
+
+    context 'with logged in admin and invalid params' do
+      before do
+        sign_in(admin)
+
+        patch :update,
+          params: {
+            slug: reading.slug,
+            water_meter_reading: {
+              reading: ''
+            }
+          }
+      end
+
+      it 'sets the flash error message' do
+        expect(flash[:error]).to be_present
+      end
+
+      it 'does not update the reading' do
+        expect(WaterMeterReading.find_by(slug: reading.slug).reading).to eq(1)
+      end
+
+      it 'renders the edit template' do
+        expect(response).to render_template(:edit)
+      end
+    end
+  end
+
+  context 'with logged in admin and valid params' do
+    before do
+      sign_in(admin)
+
+      patch :update,
+        params: {
+          slug: reading.slug,
+          water_meter_reading: {
+            reading: 300
+          }
+        }
+    end
+
+    it 'sets the flash success message' do
+      expect(flash[:success]).to be_present
+    end
+
+    it 'updates the record' do
+      expect(WaterMeterReading.find_by(slug: reading.slug).reading).to eq(300)
+    end
+
+    it 'redirects to the water meter reading show path' do
+      expect(response).to redirect_to(water_meter_reading_path(reading))
+    end
+  end
+
+  describe 'DELETE destroy' do
+    it_behaves_like 'requires sign in' do
+      let(:action) {
+        delete :destroy, params: { slug: reading.slug }
+      }
     end
   end
 end

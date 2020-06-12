@@ -6,12 +6,10 @@
     Taken By <strong><%= @reading.user.full_name %></strong> at
     <%= @reading.created_at.strftime('%I:%M %p') %>
   </p>
-  <aside class="text-center">
-    <%= image_tag @reading.image.variant(resize_to_limit: [300, nil]), class: 'full-size-image' %>
-  </aside>
+  <%= image_tag @reading.image.variant(resize_to_limit: [300, nil]), class: 'full-size-image' %>
   <p class="text-center mt-1">Manual Reading: <%= @reading.reading %></p>
   <div class="actions mt-3">
-    <%= link_to 'Update', nil, class: 'd-block mx-auto mb-2 btn btn-outline-primary' %>
+    <%= link_to 'Edit', edit_water_meter_reading_path(@reading), class: 'd-block mx-auto mb-2 btn btn-outline-primary' %>
     <%= link_to 'Delete', nil, class: 'd-block mx-auto mb-5 btn btn-outline-danger' %>
   </div>
 </main>

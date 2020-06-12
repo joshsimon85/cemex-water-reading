@@ -1,0 +1,16 @@
+<section class="alert alert-danger" role="alert">
+  <% if !obj.errors.empty? %>
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+      <span aria-hidden="true">&times;</span>
+    </button>
+    <h4 class="alert-heading mb-2">
+      The following <%= pluralize(obj.errors.uniq.count, 'error') %> prevented your
+      <%= obj.class.name.downcase %> from being <%= action %>:
+    </h4>
+    <ul class="error-messages">
+      <% obj.errors.full_messages.uniq.each do |m| %>
+        <li><%= m %></li>
+      <% end %>
+    </ul>
+  <% end %>
+</section>
