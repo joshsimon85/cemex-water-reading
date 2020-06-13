@@ -1,5 +1,6 @@
 class User < ApplicationRecord
   has_many :water_meter_readings
+  has_many :invitations
   # Include default devise modules. Others available are:
   # :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
