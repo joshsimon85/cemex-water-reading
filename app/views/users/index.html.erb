@@ -5,6 +5,7 @@
       <thead class="text-center">
         <tr>
           <th>Employee</th>
+          <th>Email</th>
           <th>Account Type</th>
           <th>Account Status</th>
           <th>Account Actions</th>
@@ -14,6 +15,7 @@
         <% @users.each do |user| %>
           <tr>
             <td><%= user.full_name %></td>
+            <td><%= user.email %></td>
             <% if user.admin? %>
               <td>Admin</td>
             <% else %>
