@@ -4,6 +4,8 @@ class Invitation < ApplicationRecord
 
   validates :email, :token, presence: true
 
+  paginates_per 5
+  
   private
 
   def generate_token

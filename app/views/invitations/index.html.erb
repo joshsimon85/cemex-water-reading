@@ -37,4 +37,30 @@
     <h3 class="text-center">Sorry, there are no invitations to show!</h3>
   <% end %>
   <%= paginate @invitations, left: 3, right: 3 %>
+
+  <%= form_for @invitation, remote: false, html: { class: 'container' } do |f| %>
+    <h3 class="mt-5 mb-3">Send An Invitation</h3>
+    <% if @invitation.errors.any? %>
+      <% @invitation.errors.full_messages.each do |m| %>
+        <% if m != "Email can't be blank" %>
+          <p class="text-danger mb-0"><%= m %></p>
+        <% end %>
+      <% end %>
+    <% end %>
+    <dl class="d-inline-block mr-1">
+      <% if @invitation.errors[:email].present? %>
+        <dt class="text-danger">
+          <%= f.label :email, "Email #{@invitation.errors[:email].first}" %>
+        </dt>
+      <% else %>
+        <dt><%= f.label :email %></dt>
+      <% end %>
+      <dd><%= f.email_field :email %></dd>
+    </dl>
+    <dl class="d-inline-block mr-1">
+      <dt><%= f.label :admin, 'Admin?' %></dt>
+      <dd><%= select_tag 'invitation[admin]', options_for_select([['False', false], ['True', true]]) %></dd>
+    </dl>
+    <%= f.submit 'Send Invite', class: 'btn btn-outline-primary', id: 'invite' %>
+  <% end %>
 </main>

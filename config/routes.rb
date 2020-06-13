@@ -12,7 +12,7 @@ Rails.application.routes.draw do
   end
 
   authenticated do
-    resources :invitations, except: [:edit, :update, :patch, :put]
+    resources :invitations, only: [:index, :create, :destroy]
     resources :water_meter_readings, param: :slug
 
     get '/accounts', to: 'users#index'
