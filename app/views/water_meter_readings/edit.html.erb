@@ -5,11 +5,11 @@
             :locals => { :obj => @reading, :action => 'updated' } %>
     <% end %>
     <h2 class="mt-5 mb-1 text-center">
-      Edit Water Meter Reading From <%= @reading.created_at.strftime('%A, %B %d, %Y') %>
+      Edit Water Meter Reading From <%= format_year(@reading.created_at) %>
     </h2>
     <p class="mb-5 text-center">
-      Taken By <strong><%= @reading.user.full_name %></strong> at
-      <%= @reading.created_at.strftime('%I:%M %p') %>
+      Taken By <strong><%= capitalize_string(@reading.user.full_name) %></strong> at
+      <%= format_time(@reading.created_at) %>
     </p>
     <%= image_tag @reading.image.variant(resize_to_limit: [300, nil]), class: 'full-size-image' %>
     <div class="text-center mt-2">

@@ -20,9 +20,9 @@
                 <i class="fa fa-search" aria-hidden="true"></i>
               <% end %>
             </td>
-            <td><%= reading.created_at.strftime('%A, %B %d, %Y') %></td>
-            <td><%= reading.created_at.strftime('%I:%M %p') %></td>
-            <td><%= reading.user.full_name %></td>
+            <td><%= format_date(reading.created_at) %></td>
+            <td><%= format_time(reading.created_at) %></td>
+            <td><%= capitalize_string(reading.user.full_name) %></td>
             <td><%= reading.reading %></td>
             <td>
               <%= link_to water_meter_reading_path(reading) do %>

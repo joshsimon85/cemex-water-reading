@@ -3,11 +3,7 @@ class WaterMeterReadingsController < ApplicationController
   before_action :require_admin!, except: [:new, :create]
 
   def index
-    if params[:page]
-      @readings = WaterMeterReading.page(params[:page])
-    else
-      @readings = WaterMeterReading.page(1)
-    end
+    @readings = WaterMeterReading.page(params[:page])
   end
 
   def new
@@ -36,6 +32,7 @@ class WaterMeterReadingsController < ApplicationController
 
   def destroy
     @reading = WaterMeterReading.find_by(slug: params[:slug])
+
     if @reading
       @reading.destroy
       flash[:success] = 'The reading has been successfully deleted.'

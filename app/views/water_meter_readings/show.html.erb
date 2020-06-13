@@ -3,8 +3,8 @@
     Water Meter Reading <%= @reading.created_at.strftime('%A, %B %d, %Y') %>
   </h2>
   <p class="mb-5 text-center">
-    Taken By <strong><%= @reading.user.full_name %></strong> at
-    <%= @reading.created_at.strftime('%I:%M %p') %>
+    Taken By <strong><%= capitalize_string(@reading.user.full_name) %></strong>
+    at <%= format_time(@reading.created_at) %>
   </p>
   <%= image_tag @reading.image.variant(resize_to_limit: [300, nil]), class: 'full-size-image' %>
   <p class="text-center mt-1">Manual Reading: <%= @reading.reading %></p>

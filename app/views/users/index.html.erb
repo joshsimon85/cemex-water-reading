@@ -14,7 +14,7 @@
       <tbody class="text-center">
         <% @users.each do |user| %>
           <tr>
-            <td><%= user.full_name %></td>
+            <td><%= capitalize_string(user.full_name) %></td>
             <td><%= user.email %></td>
             <% if user.admin? %>
               <td>Admin</td>
@@ -58,7 +58,7 @@
       </tbody>
     </table>
   <% else %>
-    <h3 class="text-center">Sorry, there are no readings to show!</h3>
+    <h3 class="text-center">Sorry, there are no accounts to show!</h3>
   <% end %>
   <%= paginate @users, left: 3, right: 3 %>
 </main>

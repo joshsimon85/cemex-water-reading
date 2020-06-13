@@ -7,7 +7,7 @@ class DeactivationsController < ApplicationController
 
     if @user.present?
       @user.update(suspended: true)
-      flash[:success] = "#{@user.full_name}'s account has been suspended!"
+      flash[:success] = "#{capitalize_string(@user.full_name)}'s account has been suspended!"
       redirect_to accounts_path
     else
       flash[:error] = "There was an error suspending that account!"
@@ -20,7 +20,7 @@ class DeactivationsController < ApplicationController
 
     if @user.present?
       @user.update(suspended: false)
-      flash[:success] = "#{@user.full_name}'s account has been activated!"
+      flash[:success] = "#{capitalize_string(@user.full_name)}'s account has been activated!"
       redirect_to accounts_path
     else
       flash[:error] = "There was an error activating that account!"

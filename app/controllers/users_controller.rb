@@ -3,10 +3,6 @@ class UsersController < ApplicationController
   before_action :require_admin!
 
   def index
-    if params[:page]
-      @users = User.page(params[:page])
-    else
-      @users = User.page(1)
-    end
+    @users = User.page(params[:page])
   end
 end

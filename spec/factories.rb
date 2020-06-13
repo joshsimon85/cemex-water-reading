@@ -9,11 +9,17 @@ FactoryBot.define do
   end
 
   factory :water_meter_reading do
-    user_id { Faker::Number }
+    user_id { Faker::Number.number }
     reading { Faker::Number.decimal }
 
     trait :with_image do
       image { Rack::Test::UploadedFile.new('spec/support/assets/test_image.jpeg', 'image/jpeg') }
     end
+  end
+
+  factory :invitation do
+    email { Faker::Internet.email }
+    user_id { Faker::Number.number }
+    admin { false }
   end
 end

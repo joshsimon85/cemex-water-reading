@@ -1,0 +1,40 @@
+<main>
+  <h2 class="text-center my-5">Active Invitations</h2>
+  <% if @invitations.count > 0 %>
+    <table class="container">
+      <thead class="text-center">
+        <tr>
+          <th>Email</th>
+          <th>Admin</th>
+          <th>Created By</th>
+          <th>Created At</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody class="text-center">
+        <% @invitations.each do |invite| %>
+          <tr>
+            <td><%= invite.email %></td>
+            <td><%= invite.admin %></td>
+            <td><%= capitalize_string(invite.user.full_name) %></td>
+            <td>
+              <%= format_date(invite.created_at) %>
+              <%= format_time(invite.created_at) %>
+            </td>
+            <td>
+              <%= button_to invitation_path(invite), method: :delete,
+                    data: { :confirm => 'Are you sure you want to delete this invitation? This action can\'t be undone.',
+                    :remote => false }, :class => "btn btn-outline-danger" do %>
+                      <i class="far fa-trash-alt"></i>
+                      Delete
+              <% end %>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  <% else %>
+    <h3 class="text-center">Sorry, there are no invitations to show!</h3>
+  <% end %>
+  <%= paginate @invitations, left: 3, right: 3 %>
+</main>

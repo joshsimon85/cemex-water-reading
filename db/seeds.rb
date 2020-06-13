@@ -112,3 +112,15 @@ reading_11 = WaterMeterReading.new({
 
 reading_11.image.attach(io: File.open('./spec/support/assets/test_image.jpeg'), filename: 'test_image.jpeg')
 reading_11.save
+
+invite_1 = Invitation.create({
+  email: 'invite_1@test.com',
+  user: admin,
+  admin: false
+})
+
+invite_2 = Invitation.create({
+  email: 'invite_2@test.com',
+  user: user,
+  admin: true
+})

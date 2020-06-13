@@ -1,4 +1,9 @@
 class ApplicationController < ActionController::Base
+  helper_method :capitalize_string
+  
+  def capitalize_string(name)
+    name.split(' ').map(&:capitalize).join(' ')
+  end
 
   protected
 
