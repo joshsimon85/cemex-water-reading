@@ -28,23 +28,29 @@
             <% end %>
             <% if user.suspended == false %>
               <td>
-                <%= button_to 'Deactivate Account', deactivation_path(user),
+                <%= button_to deactivation_path(user),
                     method: :post,
                     data: {
                       :confirm => 'Are you sure you want to deactivate this account?',
                       :remote => false
                     },
-                    :class => "btn btn-outline-danger" %>
+                    :class => "btn btn-outline-danger" do %>
+                  <i class="fas fa-lock"></i>
+                  Lock Account
+                <% end %>
               </td>
             <% else %>
               <td>
-                <%= button_to 'Activate Account', activation_path(user),
+                <%= button_to activation_path(user),
                   method: :delete,
                   data: {
                     :confirm => 'Are you sure you want to activate this account?',
                     :remote => false
                   },
-                  :class => "btn btn-outline-success" %>
+                  :class => "btn btn-outline-success" do %>
+                <i class="fas fa-lock-open"></i>
+                Unlock Account
+              <% end %>
               </td>
             <% end %>
           </tr>
