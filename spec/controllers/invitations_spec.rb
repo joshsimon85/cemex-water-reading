@@ -57,6 +57,18 @@ RSpec.describe InvitationsController do
       it 'creates the invitation' do
         expect(Invitation.count).to eq(1)
       end
+
+      it 'sends out an invitations email' do
+        expect(ActionMailer::Base.deliveries.last).to be_present
+      end
+
+      it 'send the email to the email defined in the invitation' do
+        expect(ActionMailer::Base.deliveries.last.to).to eq(['test@test.com'])
+      end
+
+      it 'sends an email with the the token' do
+        expect(ActionMailer::Base.deliveries.last.body.encoded).to include("?token=#{Invitation.first.token}")
+      end
     end
 
     context 'with signed in admin and invalid invite' do

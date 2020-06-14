@@ -13,6 +13,7 @@ class InvitationsController < ApplicationController
                             .merge(user_id: current_user.id))
 
     if @invitation.valid?
+      UserMailer.with(invitation: @invitation).invitation_email.deliver_now
       flash[:success] = 'Your invitation has been sent!'
       redirect_to invitations_path
     else

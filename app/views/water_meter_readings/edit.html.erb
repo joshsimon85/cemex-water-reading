@@ -5,7 +5,7 @@
             :locals => { :obj => @reading, :action => 'updated' } %>
     <% end %>
     <h2 class="mt-5 mb-1 text-center">
-      Edit Water Meter Reading From <%= format_year(@reading.created_at) %>
+      Edit Water Meter Reading From <%= format_date(@reading.created_at) %>
     </h2>
     <p class="mb-5 text-center">
       Taken By <strong><%= capitalize_string(@reading.user.full_name) %></strong> at
