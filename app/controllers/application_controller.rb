@@ -1,6 +1,6 @@
 class ApplicationController < ActionController::Base
   helper_method :capitalize_string
-  
+
   def capitalize_string(name)
     name.split(' ').map(&:capitalize).join(' ')
   end
@@ -11,7 +11,7 @@ class ApplicationController < ActionController::Base
     if user.admin?
       water_meter_readings_path
     else
-      water_meter_reading_new_path
+      new_water_meter_reading_path
     end
   end
 
