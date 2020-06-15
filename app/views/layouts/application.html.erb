@@ -11,6 +11,9 @@
   </head>
 
   <body>
+    <% if current_user %>
+      <%= render partial: 'shared/admin_nav' %>
+    <% end %>
     <%= render partial: 'shared/flash_messages' %>
     <%= yield %>
   </body>

@@ -1,0 +1,27 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo01" aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
+    <%= link_to water_meter_readings_path, class: 'navbar-brand', id: 'nav-logo' do %>
+      <%= image_tag 'cemex-logo.png' %>
+    <% end %>
+    <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+      <li class="nav-item active">
+        <%= link_to 'Home', water_meter_readings_path, class: 'nav-link active' %>
+      </li>
+      <li class="nav-item">
+        <%= link_to 'Accounts', accounts_path, class: 'nav-link' %>
+      </li>
+      <li class="nav-item">
+        <%= link_to 'Invitations', invitations_path, class: 'nav-link' %>
+      </li>
+      <li class="nav-item">
+        <%= link_to 'My Account', edit_user_registration_path, class: 'nav-link' %>
+      </li>
+      <li class="nav-item">
+        <%= link_to 'Sign Out', destroy_user_session_path, method: :delete, class: 'nav-link' %>
+      </li>
+    </ul>
+  </div>
+</nav>

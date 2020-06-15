@@ -72,6 +72,10 @@ tr:last-of-type {
   border-bottom: 3px solid #cecece;
 }
 
+form i {
+  font-size: 1rem;
+}
+
 #logo {
   height: 65px;
   margin: 0;
@@ -85,6 +89,13 @@ tr:last-of-type {
   height: auto;
   top: 0;
   width: 250px;
+}
+
+#nav-logo img {
+  display: inline-block;
+  height: 50px;
+  position: relative;
+  top: -5px;
 }
 
 #invite {
@@ -125,13 +136,13 @@ tr:last-of-type {
 }
 
 @media (min-width: 0px) {
-
-}
-
-@media (min-width: 576px) {
   .centered-form {
     width: 100%;
   }
+}
+
+@media (min-width: 576px) {
+
 }
 
 /* Medium devices (tablets, 768px and up) */
@@ -144,7 +155,7 @@ tr:last-of-type {
 /* Large devices (desktops, 992px and up) */
 @media (min-width: 992px) {
   .centered-form {
-    width: 30%;
+    width: 35%;
   }
 }
 
