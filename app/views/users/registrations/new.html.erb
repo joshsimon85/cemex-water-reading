@@ -1,36 +1,39 @@
-<h2>Sign Up</h2>
+<main>
+  <%= link_to root_path, class: "d-inline-block", id: 'logo' do %>
+    <h1>
+      <%= image_tag 'cemex-logo.png' %>
+    </h1>
+  <% end %>
+  <section class="mt-5 border rounded shadow mx-auto p-2 centered-form">
+    <h2 class="text-center mb-3">Sign Up</h2>
+    <%= form_for(resource, as: resource_name, url: registration_path(resource_name, token: @token)) do |f| %>
+      <%= render partial: 'shared/errors',
+            :locals => { :obj => resource, action: 'created' } %>
+      <dl>
+        <dt><%= f.label :email %></dt>
+        <dd class="mb-2">
+          <%= f.email_field :email, autofocus: true, autocomplete: "email", class: 'w-100' %>
+        </dd>
+        <dt><%= f.label :full_name %></dt>
+        <dd class="mb-2"><%= f.text_field :full_name, class: 'w-100' %></dd>
+        <dt><%= f.label :password %></dt>
+        <dd class="mb-2">
+          <% if @minimum_password_length %>
+          <em>(<%= @minimum_password_length %> characters minimum)</em>
+          <% end %><br />
+          <%= f.password_field :password, autocomplete: "new-password", class: 'w-100' %>
+        </dd>
+        <dt><%= f.label :password_confirmation %></dt>
+        <dd class="mb-2">
+          <%= f.password_field :password_confirmation, autocomplete: "new-password", class: 'w-100' %>
+        </dd>
+      </dl>
+      <%= f.hidden_field :invitation_token, value: @token %>
+      <div class="actions">
+        <%= f.submit "Sign up", class: 'btn-outline-primary w-100 mb-2 rounded' %>
+      </div>
+    <% end %>
 
-<%= form_for(resource, as: resource_name, url: registration_path(resource_name, token: @token)) do |f| %>
-  <%= render partial: 'shared/errors',
-        :locals => { :obj => resource, action: 'created' } %>
-
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
-  </div>
-
-  <div class="field">
-    <%= f.label :full_name %><br />
-    <%= f.text_field :full_name %>
-  </div>
-
-  <div class="field">
-    <%= f.label :password %>
-    <% if @minimum_password_length %>
-    <em>(<%= @minimum_password_length %> characters minimum)</em>
-    <% end %><br />
-    <%= f.password_field :password, autocomplete: "new-password" %>
-  </div>
-
-  <div class="field">
-    <%= f.label :password_confirmation %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
-  </div>
-
-  <%= f.hidden_field :invitation_token, value: @token %>
-  <div class="actions">
-    <%= f.submit "Sign up" %>
-  </div>
-<% end %>
-
-<%= render "users/shared/links" %>
+    <%= render "users/shared/links" %>
+  </section>
+</main>

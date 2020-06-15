@@ -128,16 +128,24 @@ tr:last-of-type {
 
 }
 
-@media (min-width: 576px) { }
+@media (min-width: 576px) {
+  .centered-form {
+    width: 100%;
+  }
+}
 
 /* Medium devices (tablets, 768px and up) */
 @media (min-width: 768px) {
-
+  .centered-form {
+    width: 75%;
+  }
 }
 
 /* Large devices (desktops, 992px and up) */
 @media (min-width: 992px) {
-
+  .centered-form {
+    width: 30%;
+  }
 }
 
 /* Extra large devices (large desktops, 1200px and up) */
