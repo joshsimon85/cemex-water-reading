@@ -1,5 +1,6 @@
 class DeactivationsController < ApplicationController
   before_action :authenticate_user!
+  before_action :require_active_user!
   before_action :require_admin!, only: [:create, :destroy]
 
   def create
@@ -28,7 +29,7 @@ class DeactivationsController < ApplicationController
     end
   end
 
-  def deactive_own
+  def deactivate_own
     current_user.update(suspended: true)
     flash[:success] = 'Your account has been canceled!'
     sign_out(current_user)

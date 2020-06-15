@@ -96,4 +96,29 @@ RSpec.describe DeactivationsController do
       end
     end
   end
+
+  describe 'POST deactive_own' do
+    it_behaves_like 'requires sign in' do
+      let(:action) { delete :destroy, params: { slug: active_user.slug }  }
+    end
+
+    context 'with signed in user' do
+      before do
+        sign_in(active_user)
+        post :deactivate_own
+      end
+
+      it 'sets the flash success message' do
+        expect(flash[:success]).to be_present
+      end
+
+      it 'redirects to the root path' do
+        expect(response).to redirect_to(root_path)
+      end
+
+      it 'changes the users suspended attribute to true' do
+        expect(User.find(active_user.id).suspended).to eq(true)
+      end
+    end
+  end
 end

@@ -1,5 +1,6 @@
 class WaterMeterReadingsController < ApplicationController
   before_action :authenticate_user!
+  before_action :require_active_user!
   before_action :require_admin!, except: [:new, :create]
 
   def index

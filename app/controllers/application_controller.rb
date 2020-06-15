@@ -23,4 +23,11 @@ class ApplicationController < ActionController::Base
       redirect_to new_water_meter_reading_path
     end
   end
+
+  def require_active_user!
+    unless current_user.suspended == false
+      flash[:error] = "Your account has been suspened, please contact an admin!"
+      redirect_to root_path
+    end 
+  end
 end
