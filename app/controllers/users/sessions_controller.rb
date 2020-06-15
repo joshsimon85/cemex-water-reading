@@ -12,7 +12,7 @@ class Users::SessionsController < Devise::SessionsController
   def create
     user = User.find_by(email: params[:user][:email])
     if !!user && user.suspended
-      flash[:error] = 'Sorry that account has been suspened.'
+      flash[:error] = 'Sorry that account has been suspended.'
       redirect_to new_user_session_path
     else
       super
