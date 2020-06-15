@@ -1,23 +1,16 @@
-<section class="alert alert-danger" role="alert">
-  <% if !obj.errors.empty? %>
+<% if !obj.errors.empty? %>
+  <section class="alert alert-danger errors" role="alert">
     <button type="button" class="close" data-dismiss="alert" aria-label="Close">
       <span aria-hidden="true">&times;</span>
     </button>
-    <% if name.present? %>
     <h4 class="alert-heading mb-2">
       The following <%= pluralize(obj.errors.uniq.count, 'error') %> prevented your
-      <%= name.downcase %> from being <%= action %>:
+      <%= obj.class.name.downcase %> from being <%= action %>:
     </h4>
-    <% else %>
-      <h4 class="alert-heading mb-2">
-        The following <%= pluralize(obj.errors.uniq.count, 'error') %> prevented your
-        <%= obj.class.name.downcase %> from being <%= action %>:
-      </h4>
-    <% end %>
     <ul class="error-messages">
       <% obj.errors.full_messages.uniq.each do |m| %>
         <li><%= m %></li>
       <% end %>
     </ul>
-  <% end %>
-</section>
+  </section>
+<% end %>
