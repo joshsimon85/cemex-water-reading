@@ -7,7 +7,8 @@
   <section class="mt-5 border rounded shadow mx-auto p-2 centered-form">
     <h2 class="text-center mb-3">Forgot your password?</h2>
     <%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f| %>
-      <%= render "devise/shared/error_messages", resource: resource %>
+    <%= render partial: 'shared/custom_errors',
+          :locals => { :obj => resource, msg: 'password reset instructions from being sent' } %>
       <dl>
         <dt><%= f.label :email %></dt>
         <dd class=mb-2>

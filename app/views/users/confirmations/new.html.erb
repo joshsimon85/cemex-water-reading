@@ -1,16 +1,27 @@
-<h2>Resend confirmation instructions</h2>
+<main>
+  <%= link_to root_path, class: "d-inline-block", id: 'logo' do %>
+    <h1>
+      <%= image_tag 'cemex-logo.png' %>
+    </h1>
+  <% end %>
+  <section class="mt-5 border rounded shadow mx-auto p-2 centered-form">
+    <h2 class="text-center">Resend confirmation instructions</h2>
 
-<%= form_for(resource, as: resource_name, url: confirmation_path(resource_name), html: { method: :post }) do |f| %>
-  <%= render "devise/shared/error_messages", resource: resource %>
+    <%= form_for(resource, as: resource_name, url: confirmation_path(resource_name), html: { method: :post }) do |f| %>
+      <%= render partial: 'shared/custom_errors',
+            :locals => { :obj => resource, msg: 'confirmation instructions from being sent' } %>
+      <dl>
+        <dt><%= f.label :email %></dt>
+        <dd class="mb-2">
+          <%= f.email_field :email, autofocus: true, autocomplete: "email", value: (resource.pending_reconfirmation? ? resource.unconfirmed_email : resource.email), class: 'w-100' %>
+        </dd>
+      </dl>
 
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email", value: (resource.pending_reconfirmation? ? resource.unconfirmed_email : resource.email) %>
-  </div>
+      <div class="actions">
+        <%= f.submit "Resend confirmation instructions", class: 'btn-outline-primary w-100 mb-2 rounded' %>
+      </div>
+    <% end %>
 
-  <div class="actions">
-    <%= f.submit "Resend confirmation instructions" %>
-  </div>
-<% end %>
-
-<%= render "users/shared/links" %>
+    <%= render "users/shared/links" %>
+  </section>
+</main>

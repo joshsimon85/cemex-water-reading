@@ -7,8 +7,8 @@
   <section class="mt-5 border rounded shadow mx-auto p-2 centered-form">
     <h2 class="text-center mb-3">Sign Up</h2>
     <%= form_for(resource, as: resource_name, url: registration_path(resource_name, token: @token)) do |f| %>
-      <%= render partial: 'shared/errors',
-            :locals => { :obj => resource, action: 'created' } %>
+      <%= render partial: 'shared/custom_errors',
+            :locals => { :obj => resource, msg: 'account from being created' } %>
       <dl>
         <dt><%= f.label :email %></dt>
         <dd class="mb-2">

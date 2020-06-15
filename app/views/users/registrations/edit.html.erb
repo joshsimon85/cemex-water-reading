@@ -3,8 +3,8 @@
     <h2 class="text-center">Edit Your Account</h2>
 
     <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
-    <%= render partial: 'shared/errors',
-          :locals => { :obj => resource, action: 'updated' } %>
+    <%= render partial: 'shared/custom_errors',
+          :locals => { :obj => resource, msg: 'account from being updated' } %>
     <dl>
       <dt><%= f.label :email %></dt>
       <dd class="mb-2">
