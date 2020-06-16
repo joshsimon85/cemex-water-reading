@@ -1,20 +1,27 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>CemexWaterReading</title>
+    <title>Cemex | <%= yield :title %></title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
     <%= stylesheet_link_tag 'whitespace_reset', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <%= yield :javascripts %>
   </head>
 
   <body>
-    <% if current_user %>
-      <%= render partial: 'shared/admin_nav' %>
+    <% if current_user && current_user.admin? %>
+      <%= render partial: 'shared/admin_nav', locals: { active_page: "#{yield :active_page}" } %>
     <% end %>
+
+    <% if current_user && !current_user.admin? %>
+      <%= render partial: 'shared/employee_nav', locals: { active_page: "#{yield :active_page}" } %>
+    <% end %>
+
     <%= render partial: 'shared/flash_messages' %>
+
     <%= yield %>
   </body>
 </html>

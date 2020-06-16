@@ -10,10 +10,16 @@ class InvitationsController < ApplicationController
 
   def create
     @invitations = Invitation.page(params[:page])
-    @invitation = Invitation.create(invitation_params
+    @invitation = Invitation.new(invitation_params
                             .merge(user_id: current_user.id))
 
-    if @invitation.valid?
+    if User.find_by(email: params[:invitation][:email]).present?
+      flash.now[:error] = 'There is already a user with that email address!'
+      render :index
+      return
+    end
+
+    if @invitation.save
       UserMailer.with(invitation: @invitation).invitation_email.deliver_now
       flash[:success] = 'Your invitation has been sent!'
       redirect_to invitations_path

@@ -1,3 +1,6 @@
+<%= content_for :title, 'Invitations' %>
+<%= content_for :active_page, 'invitations' %>
+
 <main>
   <h2 class="text-center my-5">Active Invitations</h2>
   <% if @invitations.count > 0 %>
@@ -40,13 +43,6 @@
 
   <%= form_for @invitation, remote: false, html: { class: 'container' } do |f| %>
     <h3 class="mt-5 mb-3">Send An Invitation</h3>
-    <% if @invitation.errors.any? %>
-      <% @invitation.errors.full_messages.each do |m| %>
-        <% if m != "Email can't be blank" %>
-          <p class="text-danger mb-0"><%= m %></p>
-        <% end %>
-      <% end %>
-    <% end %>
     <dl class="d-inline-block mr-1">
       <% if @invitation.errors[:email].present? %>
         <dt class="text-danger">

@@ -3,9 +3,10 @@ class Invitation < ApplicationRecord
   before_validation :generate_token
 
   validates :email, :token, presence: true
+  validates :email, uniqueness: true
 
   paginates_per 5
-  
+
   private
 
   def generate_token

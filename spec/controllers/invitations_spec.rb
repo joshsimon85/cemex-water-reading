@@ -94,6 +94,30 @@ RSpec.describe InvitationsController do
         expect(Invitation.count).to eq(0)
       end
     end
+
+    context 'with signed in admin and invite for a user that exists' do
+      before do
+        sign_in(admin)
+        post :create, params: {
+          invitation: {
+            email: admin.email,
+            admin: false
+          }
+        }
+      end
+
+      it 'sets a flash error message' do
+        expect(flash[:error]).to be_present
+      end
+
+      it 'renders the index template' do
+        expect(response).to render_template(:index)
+      end
+
+      it 'does not create the invitation' do
+        expect(Invitation.find_by(email: admin.email)).to eq(nil)
+      end
+    end
   end
 
   describe "DELETE destroy" do
