@@ -12,7 +12,7 @@
     <%= f.label :image, class: 'btn btn-outline-success' do  %>
       <i class="fas fa-plus"></i> Add An Image
     <% end %>
-    <%= f.file_field :image %>
+    <%= f.file_field :image, value: @reading.image %>
     <div class="bg-light mt-2 d-none" id="image-actions">
       <%= link_to nil, data: { toggle: 'modal', target: '#image-preview'} do %>
         <%= image_tag('', id: 'thumbnail', class: 'mr-4') %>
