@@ -7,7 +7,7 @@
     </h1>
   <% end %>
   <section class="mt-5 border rounded shadow mx-auto p-2 centered-form">
-    <h2 class="text-center">Resend confirmation instructions</h2>
+    <h2 class="text-center mb-3">Resend Confirmation Instructions</h2>
 
     <%= form_for(resource, as: resource_name, url: confirmation_path(resource_name), html: { method: :post }) do |f| %>
       <%= render partial: 'shared/custom_errors',

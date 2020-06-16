@@ -7,7 +7,7 @@
     </h1>
   <% end %>
   <section class="mt-5 border rounded shadow mx-auto p-2 centered-form">
-    <h2 class="text-center">Change your password</h2>
+    <h2 class="text-center mb-3">Change Your Password</h2>
     <%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :put }) do |f| %>
       <%= render partial: 'shared/custom_errors',
             :locals => { :obj => resource, msg: 'password from being changed' } %>
