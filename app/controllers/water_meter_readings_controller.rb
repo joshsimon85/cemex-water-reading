@@ -8,7 +8,19 @@ class WaterMeterReadingsController < ApplicationController
   end
 
   def new
+    @reading = WaterMeterReading.new
+  end
 
+  def create
+    @reading = WaterMeterReading.create(water_meter_reading_params
+                                .merge(user: current_user))
+    if @reading.valid?
+      flash[:success] = 'Your reading has been successfully submitted!'
+      redirect_to new_water_meter_reading_path
+    else
+      flash.now[:error] = 'There was a problem submitting your reading!'
+      render :new
+    end
   end
 
   def show
@@ -42,5 +54,11 @@ class WaterMeterReadingsController < ApplicationController
       flash[:error] = 'There was a problem deleting that reading.'
       redirect_to water_meter_readings_path
     end
+  end
+
+  private
+
+  def water_meter_reading_params
+    params.require(:water_meter_reading).permit(:image, :reading)
   end
 end

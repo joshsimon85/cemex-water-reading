@@ -185,4 +185,22 @@ RSpec.describe WaterMeterReadingsController do
       end
     end
   end
+
+  describe 'GET new' do
+    it_behaves_like 'requires sign in' do
+      let(:action) {
+        get :new
+      }
+    end
+  end
+
+  describe 'POST create' do
+    let(:user) { create(:user) }
+
+    it_behaves_like 'requires sign in' do
+      let(:action) {
+        get :new
+      }
+    end
+  end
 end

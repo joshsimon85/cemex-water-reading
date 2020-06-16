@@ -103,6 +103,27 @@ form i {
   top: -2px;
 }
 
+input#water_meter_reading_image {
+  display: none;
+}
+
+#thumbnail {
+  display: inline-block;
+  max-width: 25%;
+}
+
+#preview {
+  display: inline-block;
+  max-width: 100%;
+}
+
+#delete {
+  font-size: 1.25rem;
+}
+
+#image-preview .modal-header {
+  border-bottom: 0;
+}
 .pagination span {
   display: inline-block;
   padding: 0 3px;
@@ -154,7 +175,9 @@ form i {
 }
 
 @media (min-width: 576px) {
-
+  #thumbnail {
+    max-width: 20%;
+  }
 }
 
 /* Medium devices (tablets, 768px and up) */
@@ -162,12 +185,18 @@ form i {
   .centered-form {
     width: 75%;
   }
+  #thumbnail {
+    max-width: 15%;
+  }
 }
 
 /* Large devices (desktops, 992px and up) */
 @media (min-width: 992px) {
   .centered-form {
     width: 35%;
+  }
+  #thumbnail {
+    max-width: 10%;
   }
 }
 
