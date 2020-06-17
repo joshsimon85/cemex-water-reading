@@ -23,6 +23,7 @@
             </td>
             <td><%= capitalize_string(audit.created_by) %></td>
             <td><%= audit.action_type %></td>
+            <td><%= audit.record_id %></td>
             <td><%= audit.record_type %></td>
           </tr>
         <% end %>

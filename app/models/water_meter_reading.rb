@@ -2,6 +2,7 @@ class WaterMeterReading < ApplicationRecord
   has_one_attached :image
   belongs_to :user
   validates :reading, :user_id, :image, presence: true
+  validates :reading, numericality: { greater_than_or_equal_to: 0 }
   before_validation :set_slug
 
   default_scope { order(created_at: :desc) }

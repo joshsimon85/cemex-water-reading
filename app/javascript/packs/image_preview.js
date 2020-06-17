@@ -11,7 +11,7 @@ class ImagePreview {
 
     if (file.type.indexOf('image') === -1) {
       console.log('The file is not an image');
-      return
+      return;
     }
 
     reader.addEventListener('load', (e) => {

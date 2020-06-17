@@ -14,6 +14,7 @@ class WaterMeterReadingsController < ApplicationController
   def create
     @reading = WaterMeterReading.create(water_meter_reading_params
                                 .merge(user: current_user))
+
     if @reading.valid?
       Audit.create(created_by: current_user.full_name,
                    action_type: "creation",

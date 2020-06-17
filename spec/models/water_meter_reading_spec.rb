@@ -4,6 +4,7 @@ RSpec.describe WaterMeterReading do
   it { should validate_presence_of(:reading) }
   it { should validate_presence_of(:image) }
   it { should belong_to(:user) }
+  it { should validate_numericality_of(:reading) }
 
   it 'should return the readings in created at order desc' do
     user = create(:user)
