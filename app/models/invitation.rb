@@ -1,7 +1,8 @@
 class Invitation < ApplicationRecord
   belongs_to :user
   before_validation :generate_token
-
+  default_scope { order(created_at: :desc) }
+  
   validates :email, :token, presence: true
   validates :email, uniqueness: true
 

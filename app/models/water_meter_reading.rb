@@ -1,11 +1,10 @@
 class WaterMeterReading < ApplicationRecord
   has_one_attached :image
-
   belongs_to :user
-
   validates :reading, :user_id, :image, presence: true
-
   before_validation :set_slug
+
+  default_scope { order(created_at: :desc) }
 
   paginates_per 10
 
