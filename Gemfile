@@ -36,13 +36,10 @@ group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
   gem 'faker', '~> 2.12'
   gem 'launchy'
+  gem 'letter_opener', '~> 1.7'
   gem 'pry'
   gem 'rails-controller-testing'
   gem 'rspec-rails'
-end
-
-group :staging, :development do
-  gem 'letter_opener', '~> 1.7'
 end
 
 group :development do
