@@ -7,8 +7,14 @@
       <%= image_tag 'cemex-logo.png' %>
     <% end %>
     <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
-      <li class="nav-item">
-        <%= link_to 'Water Meter Readings', water_meter_readings_path, class: "nav-link #{'active' if active_page == 'water meter readings'}" %>
+      <li class="nav-item dropdown <%= 'active' if active_page == 'water meter readings' %>" >
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Water Meter Readings
+        </a>
+        <div class="dropdown-menu bg-light" aria-labelledby="navbarDropdown">
+          <%= link_to 'All Readings', water_meter_readings_path, class: 'dropdown-item' %>
+          <%= link_to 'New Reading', new_water_meter_reading_path, class: 'dropdown-item' %>
+        </div>
       </li>
       <li class="nav-item">
         <%= link_to 'Accounts', accounts_path, class: "nav-link #{'active' if active_page == 'accounts'}" %>
