@@ -69,6 +69,10 @@ RSpec.describe InvitationsController do
       it 'sends an email with the the token' do
         expect(ActionMailer::Base.deliveries.last.body.encoded).to include("?token=#{Invitation.first.token}")
       end
+
+      it 'creates an audit' do
+        expect(Audit.count).to eq(1)
+      end
     end
 
     context 'with signed in admin and invalid invite' do
@@ -145,6 +149,10 @@ RSpec.describe InvitationsController do
 
       it 'deletes the invitation' do
         expect(Invitation.where(id: invite.id)).to eq([])
+      end
+
+      it 'creates an audit' do
+        expect(Audit.count).to eq(1)
       end
     end
   end

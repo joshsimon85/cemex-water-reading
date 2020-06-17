@@ -21,6 +21,11 @@ class InvitationsController < ApplicationController
 
     if @invitation.save
       UserMailer.with(invitation: @invitation).invitation_email.deliver_now
+      Audit.create(created_by: current_user.full_name,
+                   action_type: "creation",
+                   record_id: @invitation.id,
+                   record_type: "invitation: #{@invitation.email}")
+
       flash[:success] = 'Your invitation has been sent!'
       redirect_to invitations_path
     else
@@ -32,6 +37,10 @@ class InvitationsController < ApplicationController
   def destroy
     @invitation = Invitation.find(params[:id])
     @invitation.destroy
+    Audit.create(created_by: current_user.full_name,
+                 action_type: "deletion",
+                 record_id: @invitation.id,
+                 record_type: "invitation: #{@invitation.email}")
 
     flash[:success] = 'The invitation has been deleted!'
     redirect_to invitations_path

@@ -32,6 +32,10 @@ RSpec.describe DeactivationsController do
         it 'changes the users suspened attribute to true' do
           expect(User.find_by(slug: active_user.slug).suspended).to eq(true)
         end
+
+        it 'creates an audit' do
+          expect(Audit.count).to eq(1)
+        end
       end
 
       context 'with a non existent user' do
@@ -78,6 +82,10 @@ RSpec.describe DeactivationsController do
         it 'changes the users suspened attribute to false' do
           expect(User.find_by(slug: active_user.slug).suspended).to eq(false)
         end
+
+        it 'creates an audit' do
+          expect(Audit.count).to eq(1)
+        end
       end
 
       context 'with a non existent user' do
@@ -118,6 +126,10 @@ RSpec.describe DeactivationsController do
 
       it 'changes the users suspended attribute to true' do
         expect(User.find(active_user.id).suspended).to eq(true)
+      end
+
+      it 'creates an audit' do
+        expect(Audit.count).to eq(1)
       end
     end
   end

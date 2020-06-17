@@ -20,6 +20,9 @@
         <%= link_to 'Accounts', accounts_path, class: "nav-link #{'active' if active_page == 'accounts'}" %>
       </li>
       <li class="nav-item">
+        <%= link_to 'Audits', audit_history_path, class: "nav-link #{'active' if active_page == 'audits'}" %>
+      </li>
+      <li class="nav-item">
         <%= link_to 'Invitations', invitations_path, class: "nav-link #{'active' if active_page == 'invitations'}" %>
       </li>
       <li class="nav-item">

@@ -15,6 +15,7 @@ Rails.application.routes.draw do
     resources :invitations, only: [:index, :create, :destroy]
     resources :water_meter_readings, param: :slug
 
+    get '/audit_history', to: 'audits#index'
     get '/accounts', to: 'users#index'
     post '/account/:slug/deactivate', to: 'deactivations#create', as: :deactivation
     delete '/account/:slug/activate', to: 'deactivations#destroy', as: :activation

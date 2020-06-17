@@ -1,0 +1,34 @@
+<%= content_for :title, 'Audit History' %>
+<%= content_for :active_page, 'audits' %>
+
+<main>
+  <h2 class="text-center mb-5 mt-3">Audit History</h2>
+  <% if @audits.count > 0 %>
+    <table class="container">
+      <thead class="text-center">
+        <tr>
+          <th>Created</th>
+          <th>Created By</th>
+          <th>Action</th>
+          <th>Record Id</th>
+          <th>Record</th>
+        </tr>
+      </thead>
+      <tbody class="text-center">
+        <% @audits.each do |audit| %>
+          <tr>
+            <td>
+              <%= format_date(audit.created_at) %>
+              <%= format_time(audit.created_at) %>
+            </td>
+            <td><%= capitalize_string(audit.created_by) %></td>
+            <td><%= audit.action_type %></td>
+            <td><%= audit.record_type %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  <% else %>
+    <h3 class="text-center">Sorry, there are no audits to show!</h3>
+  <% end %>
+  <%= paginate @audits, left: 3, right: 3 %>

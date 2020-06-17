@@ -15,6 +15,11 @@ class WaterMeterReadingsController < ApplicationController
     @reading = WaterMeterReading.create(water_meter_reading_params
                                 .merge(user: current_user))
     if @reading.valid?
+      Audit.create(created_by: current_user.full_name,
+                   action_type: "creation",
+                   record_id: @reading.slug,
+                   record_type: "water meter reading: #{@reading.reading}")
+
       flash[:success] = 'Your reading has been successfully submitted!'
       redirect_to new_water_meter_reading_path
     else
@@ -35,6 +40,11 @@ class WaterMeterReadingsController < ApplicationController
     @reading = WaterMeterReading.find_by(slug: params[:slug])
 
     if @reading.update(reading: params[:water_meter_reading][:reading])
+      Audit.create(created_by: current_user.full_name,
+                   action_type: "update",
+                   record_id: @reading.slug,
+                   record_type: "water meter reading: #{@reading.reading}")
+
       flash[:success] = 'The reading has been updated.'
       redirect_to water_meter_reading_path(@reading)
     else
@@ -48,6 +58,11 @@ class WaterMeterReadingsController < ApplicationController
 
     if @reading
       @reading.destroy
+      Audit.create(created_by: current_user.full_name,
+                   action_type: "deletion",
+                   record_id: @reading.slug,
+                   record_type: "water meter reading: #{@reading.reading}")
+
       flash[:success] = 'The reading has been successfully deleted.'
       redirect_to water_meter_readings_path
     else

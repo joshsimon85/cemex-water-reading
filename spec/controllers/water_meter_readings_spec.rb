@@ -135,6 +135,10 @@ RSpec.describe WaterMeterReadingsController do
     it 'redirects to the water meter reading show path' do
       expect(response).to redirect_to(water_meter_reading_path(reading))
     end
+
+    it 'creates an audit' do
+      expect(Audit.count).to eq(1)
+    end
   end
 
   describe 'DELETE destroy' do
@@ -167,6 +171,10 @@ RSpec.describe WaterMeterReadingsController do
 
       it 'redirects to the water meter index path' do
         expect(response).to redirect_to(water_meter_readings_path)
+      end
+
+      it 'creates an audit' do
+        expect(Audit.count).to eq(1)
       end
     end
 

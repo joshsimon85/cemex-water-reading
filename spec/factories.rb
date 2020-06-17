@@ -18,8 +18,18 @@ FactoryBot.define do
   end
 
   factory :invitation do
-    email { Faker::Internet.email }
+    email   { Faker::Internet.email }
     user_id { Faker::Number.number }
-    admin { false }
+    admin   { false }
+  end
+
+  factory :audit do
+    types = ['User', 'Water Meter Reading', 'Invitations']
+    actions = ['update', 'destroy', 'create']
+
+    created_by  { Faker::Name.name }
+    record_id   { Faker::Lorem.word }
+    action_type { types.sample }
+    record_type { actions.sample }
   end
 end
