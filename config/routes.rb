@@ -13,7 +13,7 @@ Rails.application.routes.draw do
 
   authenticated do
     resources :invitations, only: [:index, :create, :destroy]
-    resources :water_meter_readings, param: :slug
+    resources :water_meter_readings, param: :slug, except: :delete
 
     get '/audit_history', to: 'audits#index'
     get '/accounts', to: 'users#index'
