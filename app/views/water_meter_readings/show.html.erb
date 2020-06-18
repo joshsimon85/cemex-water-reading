@@ -1,7 +1,7 @@
 <%= content_for :title, 'Water Meter Reading' %>
 <%= content_for :active_page, 'water meter readings' %>
 <%= content_for :javascripts do %>
-  <%= javascript_pack_tag 'zoom_show' %>
+  <%= javascript_pack_tag 'zoom', 'data-turbolinks-track': 'reload' %>
 <% end %>
 
 <main class="container">
