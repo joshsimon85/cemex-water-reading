@@ -54,6 +54,10 @@
     <% end %>
     <%= button_to "Cancel my account", deactivate_own_path, data: { confirm: "Are you sure you want to cancel your account?" }, class: 'btn-outline-danger w-100 mb-2 mt-2 rounded' %>
 
-    <%= link_to "Back", :back %>
+    <% if current_user && current_user.admin? %>
+      <%= link_to "Cancel", water_meter_readings_path %>
+    <% else %>
+      <%= link_to "Cancel", new_water_meter_reading_path %>
+    <% end %>
   </section>
 </main>
