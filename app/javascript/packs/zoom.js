@@ -1,11 +1,5 @@
-import zoom from 'jquery-zoom';
+import { ImageZoom } from './image_zoom';
 
 $(document).on('turbolinks:load', function() {
-  $('.full-size-image')
-    .wrap('<span style="display: inline-block"></span>')
-    .css('display', 'block')
-    .parent()
-    .zoom({
-      magnify: 2
-  });
+  new ImageZoom('.full-size-image', 2).init();
 });
