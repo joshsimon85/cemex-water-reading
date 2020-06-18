@@ -126,11 +126,20 @@ input#water_meter_reading_image {
 }
 
 .btn {
-  background: #ffff;
+  background: transparent;
 }
 
 .btn:focus {
   outline: none;
+}
+
+.zoom {
+  color: $primary;
+  font-size: 1.25rem;
+  position: absolute;
+  right: 5px;
+  top: 5px;
+  z-index: 100;
 }
 
 button:focus {

@@ -1,5 +1,8 @@
 <%= content_for :title, 'Edit Water Meter Reading' %>
 <%= content_for :active_page, 'water meter readings' %>
+<%= content_for :javascripts do %>
+  <%= javascript_pack_tag 'zoom' %>
+<% end %>
 
 <main class="container">
   <%= form_for @reading, remote: false do |f| %>
@@ -12,7 +15,10 @@
       Taken By <strong><%= capitalize_string(@reading.user.full_name) %></strong> at
       <%= format_time(@reading.created_at) %>
     </p>
-    <%= image_tag @reading.image.variant(resize_to_limit: [300, nil]), class: 'full-size-image' %>
+    <div class="d-block mx-auto position-relative" style="width: 300px;">
+      <i class="fa fa-search zoom" aria-hidden="true"></i>
+      <%= image_tag @reading.image.variant(resize_to_limit: [300, nil]), class: 'full-size-image' %>
+    </div>
     <div class="text-center mt-2">
       <dt class="d-inline-block"><%= f.label :reading, "Manual Reading: " %></dt>
       <dd class="d-inline-block"><%=f.text_field :reading, value: @reading.reading %>

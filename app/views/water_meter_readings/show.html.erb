@@ -1,5 +1,8 @@
 <%= content_for :title, 'Water Meter Reading' %>
 <%= content_for :active_page, 'water meter readings' %>
+<%= content_for :javascripts do %>
+  <%= javascript_pack_tag 'zoom' %>
+<% end %>
 
 <main class="container">
   <h2 class="mt-5 mb-1 text-center">
@@ -9,7 +12,10 @@
     Taken By <strong><%= capitalize_string(@reading.user.full_name) %></strong>
     at <%= format_time(@reading.created_at) %>
   </p>
-  <%= image_tag @reading.image.variant(resize_to_limit: [300, nil]), class: 'full-size-image' %>
+  <div class="d-block mx-auto position-relative" style="width: 300px;">
+    <i class="fa fa-search zoom" aria-hidden="true"></i>
+    <%= image_tag @reading.image.variant(resize_to_limit: [300, nil]), class: 'full-size-image' %>
+  </div>
   <p class="text-center mt-1">Manual Reading: <%= @reading.reading %></p>
   <div class="actions mt-3">
     <%= link_to edit_water_meter_reading_path(@reading), class: 'd-block mx-auto mb-2 btn btn-outline-primary'  do %>
