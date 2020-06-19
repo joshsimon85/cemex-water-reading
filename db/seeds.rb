@@ -1,3 +1,7 @@
+User.delete_all
+WaterMeterReading.delete_all
+Invitation.delete_all
+
 admin = User.create({
   :full_name => 'Jon Doe',
   :email => 'jon@doe.com',

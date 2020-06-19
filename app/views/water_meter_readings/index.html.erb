@@ -3,7 +3,7 @@
 
 <main>
   <h2 class="text-center mb-5 mt-3">Water Meter Readings</h2>
-  <%= render partial: 'shared/created_at_filter' %>
+  <%= render 'shared/month_and_date_filter' %>
   <% if @readings.count > 0 %>
     <table class="container">
       <thead class="text-center">

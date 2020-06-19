@@ -1,0 +1,7 @@
+<section class="mb-3 pl-0 container">
+  <h4>Filter By Date</h4>
+  <%= form_with url: audit_history_path, local: true, method: :get do |f| %>
+    <%= date_field "search", "created", value: @date %>
+    <%= f.submit 'Filter', class: 'btn btn-outline-primary', id: 'filter-submit' %>
+  <% end %>
+</section>

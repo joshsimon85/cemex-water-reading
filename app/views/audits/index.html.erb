@@ -3,6 +3,7 @@
 
 <main>
   <h2 class="text-center mb-5 mt-3">Audit History</h2>
+  <%= render 'shared/date_filter' %>
   <% if @audits.count > 0 %>
     <table class="container">
       <thead class="text-center">
@@ -30,6 +31,6 @@
       </tbody>
     </table>
   <% else %>
-    <h3 class="text-center">Sorry, there are no audits to show!</h3>
+    <h3 class="text-center mt-4">Sorry, there are no audits to show!</h3>
   <% end %>
   <%= paginate @audits, left: 3, right: 3 %>
