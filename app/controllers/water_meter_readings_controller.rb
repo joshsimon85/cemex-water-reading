@@ -4,7 +4,16 @@ class WaterMeterReadingsController < ApplicationController
   before_action :require_admin!, except: [:new, :create]
 
   def index
-    @readings = WaterMeterReading.page(params[:page])
+    if params['reading'].present?
+      @date = Date.new params['reading']['created on(1i)'].to_i,
+                       params['reading']['created on(2i)'].to_i
+      @readings = WaterMeterReading
+                    .where('created_at BETWEEN ? and ?', @date, @date.end_of_month)
+                    .page(params[:page])
+    else
+      @date = Date.current
+      @readings = WaterMeterReading.page(params[:page])
+    end
   end
 
   def new

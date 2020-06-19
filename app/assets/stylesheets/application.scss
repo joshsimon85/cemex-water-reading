@@ -131,6 +131,11 @@ input#water_meter_reading_image {
   border-bottom: 0;
 }
 
+#filter-submit {
+  position: relative;
+  bottom: 2px;
+}
+
 .field_with_errors label {
   color: $danger;
 }
