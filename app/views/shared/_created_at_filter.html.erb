@@ -1,7 +1,17 @@
-<section class="container mb-3 pl-0">
-  <h4>Filter By Date</h4>
-  <%= form_with url: water_meter_readings_path, local: true, method: :get do |f| %>
-    <%= date_select "reading", "created on", discard_day: true, start_year: Date.current.year, end_year: 2020, selected: @date %>
-    <%= f.submit 'Filter', class: 'btn btn-outline-primary', id: 'filter-submit' %>
-  <% end %>
-</section>
+<div class="container">
+  <section class="mb-3 pl-0 d-inline-block mr-3">
+    <h4>Filter By Month</h4>
+    <%= form_with url: water_meter_readings_path, local: true, method: :get do |f| %>
+      <%= date_select "readings", "created on", discard_day: true, start_year: Date.current.year, end_year: 2020, selected: @date %>
+      <%= f.submit 'Filter', class: 'btn btn-outline-primary', id: 'filter-submit' %>
+    <% end %>
+  </section>
+  <section class="mb-3 pl-0 d-inline-block">
+    <h4>Filter By Date</h4>
+    <%= form_with url: water_meter_readings_path, local: true, method: :get do |f| %>
+      <%= date_field "reading", "created on", value: @date %>
+      <%= f.submit 'Filter', class: 'btn btn-outline-primary', id: 'filter-submit' %>
+    <% end %>
+  </section>
+
+</div>
