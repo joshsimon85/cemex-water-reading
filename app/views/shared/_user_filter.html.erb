@@ -1,0 +1,7 @@
+<section class="container mb-3 pl-0">
+  <h4>Search Accounts</h4>
+  <%= form_with url: accounts_path, local: true, method: :get do |f| %>
+    <%= f.text_field :search, placeholder: 'Name or Email' %>
+    <%= f.submit 'Search', class: 'btn btn-outline-primary', id: 'filter-submit' %>
+  <% end %>
+</section>

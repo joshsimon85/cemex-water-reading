@@ -2,6 +2,7 @@
 <%= content_for :active_page, 'accounts' %>
 <main>
   <h2 class="text-center mb-5 mt-3">Accounts</h2>
+  <%= render 'shared/user_filter' %>
   <% if @users.count > 0 %>
     <table class="container">
       <thead class="text-center">
